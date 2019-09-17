@@ -1,0 +1,9 @@
+.vs
+Hotel.Api/bin
+Hotel.Api/obj
+Hotel.Application/bin
+Hotel.Application/obj
+Hotel.Domain/bin
+Hotel.Domain/obj
+Hotel.Persistence/bin
+Hotel.Persistence/obj
