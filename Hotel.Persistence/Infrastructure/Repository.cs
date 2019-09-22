@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Hotel.Application.Interface.Infrastructure;
 
 namespace Hotel.Persistence.Infrastructure
 {
@@ -32,9 +33,9 @@ namespace Hotel.Persistence.Infrastructure
             return _session.Load<TEntity>(id);
         }
 
-        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> expression = null)
         {
-            return _session.Query<TEntity>().Where(expression);
+            return expression != null ?_session.Query<TEntity>().Where(expression) : _session.Query<TEntity>();
         }
 
         public void Update(TEntity entity)

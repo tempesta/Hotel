@@ -2,6 +2,7 @@
 using Hotel.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Hotel.Persistence.Mapeamento
@@ -16,7 +17,7 @@ namespace Hotel.Persistence.Mapeamento
             Map(x => x.Descricao).Not.Nullable();
             Map(x => x.Avaliacao).Not.Nullable();
             Map(x => x.Endereco).Not.Nullable();
-            HasMany(x => x.Comodidades).KeyColumn("id_comodidade").Table("comodidade").Not.KeyNullable();
+            HasManyToMany(x => x.Comodidades).Table("rel_hotel_comodidade").Cascade.AllDeleteOrphan();
         }
     }
 }

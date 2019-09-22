@@ -15,13 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1321E638-4777-4F94-99CF-61D2E3779C6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Persistence", "Hotel.Persistence\Hotel.Persistence.csproj", "{8802CA12-292D-47CB-A718-90DCE338A6E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Persistence", "Hotel.Persistence\Hotel.Persistence.csproj", "{8802CA12-292D-47CB-A718-90DCE338A6E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Application", "Hotel.Application\Hotel.Application.csproj", "{A11FD494-34F8-4FE8-85EB-5448FDA8C188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Application", "Hotel.Application\Hotel.Application.csproj", "{A11FD494-34F8-4FE8-85EB-5448FDA8C188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Domain", "Hotel.Domain\Hotel.Domain.csproj", "{2824C30D-BFB2-4512-9A9A-E3C172C743F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Domain", "Hotel.Domain\Hotel.Domain.csproj", "{2824C30D-BFB2-4512-9A9A-E3C172C743F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Api", "Hotel.Api\Hotel.Api.csproj", "{31C05E8B-84DD-4F5F-A3B3-7E95709B5B29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Api", "Hotel.Api\Hotel.Api.csproj", "{31C05E8B-84DD-4F5F-A3B3-7E95709B5B29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnit", "TestUnit\TestUnit.csproj", "{C4F27FB2-FFD3-48AB-90A8-EFC03D2FD084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{31C05E8B-84DD-4F5F-A3B3-7E95709B5B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C05E8B-84DD-4F5F-A3B3-7E95709B5B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C05E8B-84DD-4F5F-A3B3-7E95709B5B29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F27FB2-FFD3-48AB-90A8-EFC03D2FD084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F27FB2-FFD3-48AB-90A8-EFC03D2FD084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F27FB2-FFD3-48AB-90A8-EFC03D2FD084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F27FB2-FFD3-48AB-90A8-EFC03D2FD084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{A11FD494-34F8-4FE8-85EB-5448FDA8C188} = {A6ADF57A-5148-43A0-8C0A-BBF01E8E79E6}
 		{2824C30D-BFB2-4512-9A9A-E3C172C743F0} = {A6ADF57A-5148-43A0-8C0A-BBF01E8E79E6}
 		{31C05E8B-84DD-4F5F-A3B3-7E95709B5B29} = {FC7950FE-747C-4E9D-A819-B3E0529009BB}
+		{C4F27FB2-FFD3-48AB-90A8-EFC03D2FD084} = {1321E638-4777-4F94-99CF-61D2E3779C6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {573784A4-A899-4D0F-BFB8-A66EDBD11166}

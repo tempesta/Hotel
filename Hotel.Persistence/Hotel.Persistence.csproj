@@ -7,14 +7,11 @@
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Npgsql" Version="4.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Hotel.Application\Hotel.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

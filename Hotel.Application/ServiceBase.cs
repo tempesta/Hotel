@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Hotel.Application.Interface.Infrastructure;
 
-namespace Hotel.Application.Services
+namespace Hotel.Application
 {
     public class ServiceBase<TEntity> where TEntity : class
     {

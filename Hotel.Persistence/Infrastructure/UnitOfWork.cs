@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Hotel.Application.Interface.Infrastructure;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Hotel.Persistence.Infrastructure
 {
@@ -32,12 +34,17 @@ namespace Hotel.Persistence.Infrastructure
 
             var entities = GetAssemblyByName("Hotel.Persistence");
 
-            var fluent = Fluently.Configure()
-                                    .Database(MySQLConfiguration.Standard.ConnectionString(connectionString).ShowSql())
-                                    .Mappings(m => m.FluentMappings.AddFromAssembly(entities));
+            var fluentConfiguration = Fluently.Configure()
+                                    .Database(PostgreSQLConfiguration.PostgreSQL82.ConnectionString(connectionString).ShowSql())
+                                    .Mappings(m => m.FluentMappings.AddFromAssembly(entities))
+                                    .BuildConfiguration();
 
-            _sessionFactory = fluent.BuildSessionFactory();
+            var exporter = new SchemaExport(fluentConfiguration);
+            exporter.Create(false, true);
+
+            _sessionFactory = fluentConfiguration.BuildSessionFactory();
         }
+
 
         public UnitOfWork()
         {

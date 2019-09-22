@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hotel.Application.Interface
+namespace Hotel.Application.Interface.Infrastructure
 {
     public interface IUnitOfWork
     {

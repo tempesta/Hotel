@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Hotel.Application.Interface
+namespace Hotel.Application.Interface.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : class
     {
@@ -12,6 +12,6 @@ namespace Hotel.Application.Interface
         void Update(TEntity entity);
         void Delete(TEntity entity);
         TEntity Load(int id);
-        IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> expression);
+        IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> expression = null);
     }
 }

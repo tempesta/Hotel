@@ -16,6 +16,6 @@ namespace Hotel.Domain.Entities
         public virtual string Descricao { get; set; }
         public virtual int Avaliacao { get; set; }
         public virtual string Endereco { get; set; }
-        public virtual IList<ComodidadeEntity> Comodidades { get; private set; }
+        public virtual IList<ComodidadeEntity> Comodidades { get; set; }
     }
 }
