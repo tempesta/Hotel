@@ -1,0 +1,54 @@
+.container
+    .card
+        h5.card-header Consultar Hotéis
+        .card-body
+            .card
+                .card-header 
+                    i.fas.fa-search
+                        span Filtros para pesquisa
+                    button.btn.btn-outline-secondary.float-right(type='button', ng-click='view.cadastrar()') Cadastrar novo hotel
+                .card-body
+                    form
+                        .form-group
+                            label(for="nome") Nome do hotel:
+                            input.form-control(id="nome", type="text", ng-model='view.filtro.nome')
+                        .form-group
+                            label(for="comodidades") Comodidades desejadas:
+                            div.form-check(ng-repeat="comodidade in view.comodidades")
+                                input.form-check-input(type="checkbox", id="{{comodidade.nome}}", value="{{comodidade.id}}", checklist-model="view.filtro")
+                                label.form-check-label(for="{{comodidade.nome}}") {{comodidade.nome}}
+                        button.btn.btn-outline-secondary.float-right(type='button', ng-click='view.pesquisar()') Pesquisar
+                        
+
+            .card
+                .card-header Resultados da pesquisa
+                .card-body 
+                    table.table.table-striped(ng-if='view.hoteis.length > 0')
+                        thead
+                            th(scope='col') Nome
+                            th(scope='col') Avaliacao
+                            th(scope='col') Ação
+                        tbody(ng-repeat='hotel in view.hoteis')
+                            tr(scope='row')
+                                td {{hotel.Nome}}
+                                td 
+                                    div.rate
+                                        input(type="radio", id="star5", name="rating", value="5", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 5')
+                                        label(for="star5")
+                                        input(type="radio", id="star4", name="rating", value="4", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 4')
+                                        label(for="star4")
+                                        input(type="radio", id="star3", name="rating", value="3", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 3')
+                                        label(for="star3")
+                                        input(type="radio", id="star2", name="rating", value="2", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 2')
+                                        label(for="star2")
+                                        input(type="radio", id="star1", name="rating" ,value="1", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 1')
+                                        label(for="star1")
+                                td
+                                    a(ng-click='view.editar(hotel)')
+                                        span
+                                            i.fas.fa-pencil
+                                    a(ng-click='view.excluir(hotel)')
+                                        span
+                                            i.fas.fa-remove
+                    div(ng-if='view.hoteis.length <= 0')
+                        | Não existe hotel a ser exibido

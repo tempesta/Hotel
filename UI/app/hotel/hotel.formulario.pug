@@ -1,0 +1,54 @@
+.container
+    .card
+        h5.card-header {{hotel.titulo}}
+        .card-body
+            .card
+                .card-header 
+                    | Preencha os campos
+                .card-body
+                    form
+                        .row
+                            .col
+                                .form-group
+                                    div 
+                                        |Avaliação:
+                                    div.rate
+                                        input(type="radio", id="star5", name="rating", value="5", ng-model='hotel.envelope.Avaliacao', required)
+                                        label(for="star5")
+                                        input(type="radio", id="star4", name="rating", value="4", ng-model='hotel.envelope.Avaliacao', required)
+                                        label(for="star4")
+                                        input(type="radio", id="star3", name="rating", value="3", ng-model='hotel.envelope.Avaliacao', required)
+                                        label(for="star3")
+                                        input(type="radio", id="star2", name="rating", value="2", ng-model='hotel.envelope.Avaliacao', required)
+                                        label(for="star2")
+                                        input(type="radio", id="star1", name="rating" ,value="1", ng-model='hotel.envelope.Avaliacao', required)
+                                        label(for="star1")
+                        .row
+                            .col
+                                .form-group
+                                    label(for="nome") Nome do hotel:
+                                    input.form-control(id="nome", type="text", ng-model='hotel.envelope.Nome', required)
+                        .row
+                            .col
+                                .form-group
+                                    label(for="endereco") Endereço:
+                                    input.form-control(id="endereco", type="text", ng-model='hotel.envelope.Endereco', required)
+                        .row
+                            .col
+                                .form-group
+                                    label(for="descricao") Descrição:
+                                    textarea.form-control(id="descricao", type="text", ng-model='hotel.envelope.Descricao', row="7", required)
+                        .row
+                            .col
+                                .form-group
+                                    label(for="comodidades") Comodidades desejadas:
+                                    div.form-check(ng-repeat="comodidade in hotel.comodidades")
+                                        input.form-check-input(type="checkbox", id="{{comodidade.nome}}", ng-model="hotel.selectedComodidades[comodidade.id]", required)
+                                        label.form-check-label(for="{{comodidade.nome}}") {{comodidade.nome}}
+                        .row
+                            .col.offset-8
+                                .col
+                                    div.float-right
+                                        button.btn.btn-outline-secondary(type='reset') Limpar campos
+                                        button.btn.btn-outline-secondary(ng-if='!hotel.editar', type='submit', ng-click='hotel.cadastrar()') Cadastrar
+                                        button.btn.btn-outline-secondary(ng-if='hotel.editar', type='submit', ng-click='hotel.alterar()') Alterar

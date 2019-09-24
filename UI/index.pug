@@ -1,0 +1,45 @@
+doctype html  
+html(lang='en', ng-app='app')  
+    head
+        meta(charset="UTF-8")
+
+        <!--build:css css/style.css -->
+        link(rel='stylesheet' href='node_modules/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='style/app.css')
+        link(rel='stylesheet' href='node_modules/@fortawesome/fontawesome-free/css/fontawesome.css')
+        link(rel='stylesheet' href='node_modules/@fortawesome/fontawesome-free/css/solid.css')
+        <!--endbuild-->
+
+        <!--build:js scripts/components.js -->
+        script(src='node_modules/angular/angular.min.js')
+        script(src='node_modules/angular-route/angular-route.min.js')
+        script(src='node_modules/jquery/dist/jquery.min.js')
+        script(src='node_modules/bootstrap/dist/js/bootstrap.min.js')
+        script(src='node_modules/@fortawesome/fontawesome-free/js/fontawesome.js')
+        <!--endbuild-->
+
+        <!--build:js scripts/main.js -->
+        script(src='app/app.module.js')
+        script(src='app/app.constants.js')
+
+        script(src='app/services/service.module.js')
+        script(src='app/services/service.interceptor.js')
+        script(src='app/services/service.hotel.js')
+
+        script(src='app/hotel/hotel.module.js')
+        script(src='app/hotel/hotel.route.js')
+        script(src='app/hotel/hotel.consultar.controller.js')
+        script(src='app/hotel/hotel.cadastrar.controller.js')
+        script(src='app/hotel/hotel.editar.controller.js')
+
+        <!--endbuild-->
+
+        title HotelApp
+    header.container
+    body
+        .container   
+            section(ng-view)
+    footer.footer
+        div
+            .text-muted.mt-5.mb-5.text-center.small
+                | &copy Developed for training
