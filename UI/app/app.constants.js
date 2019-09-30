@@ -4,6 +4,6 @@
     angular
         .module('app.constants', [])
         .constant('Constantes', {
-            url: 'http://localhost:44353',
+            url: 'http://localhost:5000',
         });
 })();
