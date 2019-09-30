@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hotel.Application.Comodidade;
 using Hotel.Application.Hotel.Model;
 using Hotel.Application.Interface.Infrastructure;
 using Hotel.Application.Interface.Hotel;
 using Hotel.Domain.Entities;
+using Newtonsoft.Json.Linq;
 
 namespace Hotel.Application.Hotel
 {
     public class ServiceHotel : ServiceBase<HotelEntity>, IHotel
     {
+
         public ServiceHotel(IRepository<HotelEntity> repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
         {
+
         }
 
         public void Salvar(HotelDto hotelDto)
@@ -25,11 +29,7 @@ namespace Hotel.Application.Hotel
 
             hotelDto.Comodidades.ForEach((item) =>
             {
-                hotel.Comodidades.Add(new ComodidadeEntity
-                {
-                    Id = 1,
-                    Nome = item.Nome
-                });
+                hotel.Comodidades.Add(Repository.Query<ComodidadeEntity>().FirstOrDefault(c => c.Id == item.Id));
             });
 
             Transaction(() =>
@@ -66,37 +66,47 @@ namespace Hotel.Application.Hotel
             Repository.Update(toUpdateHotel);
         }
 
-        public void Excluir(HotelDto hotelDto)
+        public void Excluir(int id)
         {
-            if (hotelDto.Id <= 0)
+            if (id <= 0)
                 throw new ArgumentException("Operação inválida");
 
-            var hotelEntity = Repository.Load(hotelDto.Id);
+            var hotelEntity = Repository.Load(id);
             if(hotelEntity == null)
                 throw new ArgumentException("Operação inválida");
 
             Repository.Delete(hotelEntity);
         }
 
-        public List<HotelDto> Pesquisar(Dictionary<string, string> filtro, int itensPorPagina)
+        public HotelDto Buscar(int id)
+        {
+            if(id <= 0)
+                throw  new Exception("Consulta inválida");
+
+            return new HotelDto(Repository.Load(id));
+        }
+
+        public List<HotelDto> Pesquisar(Dictionary<string, object> filtro, int itensPorPagina)
         {
             var query = Repository.Query();
 
             if (filtro == null)
                 return query.Select(hotelEntity => new HotelDto(hotelEntity)).ToList();
 
-            if(filtro.ContainsKey("Nome") && string.IsNullOrEmpty(filtro["Nome"]))
+            if(filtro.ContainsKey("Nome") && !string.IsNullOrEmpty(filtro["Nome"] as string))
             {
-                query = query.Where(x => x.Nome == filtro["Nome"].ToString());
+                var nome = (filtro["Nome"] as string).ToLower();
+                query = query.Where(x => x.Nome.ToLower().Contains(nome));
             }
 
-            if (filtro.ContainsKey("Comodidades") && string.IsNullOrEmpty(filtro["Comodidades"]))
+            
+            if (filtro.ContainsKey("Comodidades") )
             {
-                var comodidadesConsulta = filtro["Comodidades"].Split(",").Select(x => Convert.ToInt32(x));
-                query = comodidadesConsulta.Aggregate(query, (current, comodidadeId) => current.Where(x => x.Comodidades.Any(c => c.Id == comodidadeId)));
+                var comodidades = (filtro["Comodidades"] as JArray)?.Select(c => Convert.ToInt32(c));
+                query = comodidades.Aggregate(query, (current, comodidadeId) => current.Where(x => x.Comodidades.Any(c => c.Id == comodidadeId)));
             }
 
-            if (filtro.ContainsKey("Pagina") && string.IsNullOrEmpty(filtro["Pagina"]))
+            if (filtro.ContainsKey("Pagina") && Convert.ToInt32(filtro["Pagina"]) > 0)
             {
                 var pagina = Convert.ToInt32(filtro["Pagina"]);
                 if (pagina > 0)

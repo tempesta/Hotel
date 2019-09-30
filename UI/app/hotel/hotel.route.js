@@ -22,7 +22,7 @@
                 })
                 .when('/hotel/editar/:id', {
                     templateUrl: 'app/hotel/hotel.formulario.html',
-                    controller: 'HotelECtrl',
+                    controller: 'HotelEditarCtrl',
                     controllerAs: 'hotel'
                 })
                 .otherwise('/');

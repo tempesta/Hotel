@@ -11,12 +11,12 @@
                     form
                         .form-group
                             label(for="nome") Nome do hotel:
-                            input.form-control(id="nome", type="text", ng-model='view.filtro.nome')
+                            input.form-control(id="nome", type="text", ng-model='view.filtro.Nome')
                         .form-group
                             label(for="comodidades") Comodidades desejadas:
                             div.form-check(ng-repeat="comodidade in view.comodidades")
-                                input.form-check-input(type="checkbox", id="{{comodidade.nome}}", value="{{comodidade.id}}", checklist-model="view.filtro")
-                                label.form-check-label(for="{{comodidade.nome}}") {{comodidade.nome}}
+                                input.form-check-input(type="checkbox", id="{{comodidade.Nome}}", checklist-value="comodidade.Id", checklist-model="view.filtro.Comodidades")
+                                label.form-check-label(for="{{comodidade.Nome}}") {{comodidade.Nome}}
                         button.btn.btn-outline-secondary.float-right(type='button', ng-click='view.pesquisar()') Pesquisar
                         
 
@@ -27,28 +27,26 @@
                         thead
                             th(scope='col') Nome
                             th(scope='col') Avaliacao
-                            th(scope='col') Ação
+                            th(scope='col') Ações
                         tbody(ng-repeat='hotel in view.hoteis')
                             tr(scope='row')
-                                td {{hotel.Nome}}
+                                td {{hotel.nome}}
                                 td 
                                     div.rate
-                                        input(type="radio", id="star5", name="rating", value="5", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 5')
+                                        input(type="radio", id="star5", name="rating", value="5", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "5"')
                                         label(for="star5")
-                                        input(type="radio", id="star4", name="rating", value="4", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 4')
+                                        input(type="radio", id="star4", name="rating", value="4", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "4"')
                                         label(for="star4")
-                                        input(type="radio", id="star3", name="rating", value="3", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 3')
+                                        input(type="radio", id="star3", name="rating", value="3", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "3"')
                                         label(for="star3")
-                                        input(type="radio", id="star2", name="rating", value="2", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 2')
+                                        input(type="radio", id="star2", name="rating", value="2", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "2"')
                                         label(for="star2")
-                                        input(type="radio", id="star1", name="rating" ,value="1", ng-model='hotel.Avaliacao', ng-selected='hotel.Avaliacao == 1')
+                                        input(type="radio", id="star1", name="rating" ,value="1", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "1"')
                                         label(for="star1")
                                 td
-                                    a(ng-click='view.editar(hotel)')
-                                        span
-                                            i.fas.fa-pencil
-                                    a(ng-click='view.excluir(hotel)')
-                                        span
-                                            i.fas.fa-remove
+                                    button.btn(type="button", ng-click='view.editar(hotel.id)')
+                                        i.fas.fa-edit
+                                    button.btn(type="button", ng-click='view.excluir(hotel.id)')
+                                        i.fas.fa-trash-alt                                            
                     div(ng-if='view.hoteis.length <= 0')
                         | Não existe hotel a ser exibido

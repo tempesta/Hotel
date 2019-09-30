@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Hotel.Application.Interface.Infrastructure;
+using NHibernate.Linq;
 using NHibernate.Tool.hbm2ddl;
 
 namespace Hotel.Persistence.Infrastructure
@@ -43,8 +44,24 @@ namespace Hotel.Persistence.Infrastructure
             exporter.Create(false, true);
 
             _sessionFactory = fluentConfiguration.BuildSessionFactory();
+
+            Seeds();
         }
 
+        static void Seeds()
+        {
+            using (var session = _sessionFactory.OpenSession())
+            {
+                var sql = $@"INSERT INTO comodidade (Id, Nome) VALUES (1, 'Estacionamento'),
+                                                                      (2, 'Piscina'),
+                                                                      (3, 'Sauna'),
+                                                                      (4, 'Wi - fi'),
+                                                                      (5, 'Restaurante'),
+                                                                      (6, 'Bar')";
+
+                session.CreateSQLQuery(sql).ExecuteUpdate();
+            }
+        }
 
         public UnitOfWork()
         {

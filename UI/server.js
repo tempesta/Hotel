@@ -1,8 +1,7 @@
-var express = require(‘express’);
+var express = require('express');
 var app = express();
-app.use(express.static(app));
-app.get(‘/’, function (req, res,next) {
- res.redirect(‘/’); 
+app.use(express.static('app'));
+app.get('/', function (req, res,next) {
+ res.redirect('/'); 
 });
-app.listen(8080, ‘localhost’);
-console.log(“MyProject Server is Listening on port 8080”);
+app.listen(80, 'localhost');

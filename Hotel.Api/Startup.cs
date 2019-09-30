@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Hotel.Application.Hotel;
+using Hotel.Application.Interface.Hotel;
+using Hotel.Application.Interface.Infrastructure;
+using Hotel.Domain.Entities;
+using Hotel.Persistence.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
@@ -19,6 +25,8 @@ namespace Hotel.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddCors();
 
             services.AddSwaggerGen(c =>
             {
@@ -44,6 +52,9 @@ namespace Hotel.Api
 
                 c.IncludeXmlComments(caminhoXmlDoc);
             });
+
+            //services.AddScoped<IUnitOfWork>();
+            //services.AddScoped<IHotel, ServiceHotel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +64,12 @@ namespace Hotel.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:8080");
+                options.AllowAnyHeader();
+            });
 
             app.UseMvc(routes =>
             {
@@ -67,6 +84,8 @@ namespace Hotel.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
                     "Hotel Api");
             });
+
+            app.UseHttpsRedirection();
 
             app.Run(async (context) =>
             {

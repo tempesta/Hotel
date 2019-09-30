@@ -7,8 +7,8 @@ Hotel.Domain/bin
 Hotel.Domain/obj
 Hotel.Persistence/bin
 Hotel.Persistence/obj
-TestUnit/bin
-TestUnit/obj
+Teste/bin
+Teste/obj
 UI/**/*.html
 UI/node_modules/
 UI/dist

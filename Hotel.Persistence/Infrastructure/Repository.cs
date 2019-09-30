@@ -35,6 +35,11 @@ namespace Hotel.Persistence.Infrastructure
 
         public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> expression = null)
         {
+            return expression != null ? _session.Query<TEntity>().Where(expression) : _session.Query<TEntity>();
+        }
+
+        public IQueryable<TEntity> Query<TEntity>(Expression<Func<TEntity, bool>> expression = null)
+        {
             return expression != null ?_session.Query<TEntity>().Where(expression) : _session.Query<TEntity>();
         }
 

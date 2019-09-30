@@ -5,38 +5,37 @@
         .module('app.hotel')
         .controller('HotelConsultarCtrl', HotelConsultarCtrl);
 
-        HotelConsultarCtrl.$inject = ['$routeParams', '$location', 'HotelService'];
+        HotelConsultarCtrl.$inject = ['$route', '$routeParams', '$location', 'HotelService'];
 
-    function HotelConsultarCtrl($routeParams, $location, HotelService) {
+    function HotelConsultarCtrl($route, $routeParams, $location, HotelService) {
         let vm = this;
 
-        vm.hoteis = [
-            {
-                'id': 1,
-                'Nome': 'Hotel Teste',
-                'Avaliacao': '3'
-            }
-        ];
+        vm.hoteis = [];
+        vm.filtro = {};
         vm.comodidades = [
             {
-                'id': 1,
-                'nome': 'Estacionamento'
+                'Id': 1,
+                'Nome': 'Estacionamento'
             },
             {
-                'id': 2,
-                'nome': 'Piscina'
+                'Id': 2,
+                'Nome': 'Piscina'
             },
             {
-                'id': 3,
-                'nome': 'Sauna'
+                'Id': 3,
+                'Nome': 'Sauna'
             },
             {
-                'id': 4,
-                'nome': 'Wi-fi'
+                'Id': 4,
+                'Nome': 'Wi-fi'
             },
             {
-                'id': 5,
-                'nome': 'Bar'
+                'Id': 5,
+                'Nome': 'Restaurante'
+            },
+            {
+                'Id': 6,
+                'Nome': 'Bar'
             }
         ];
 
@@ -46,20 +45,26 @@
         vm.excluir = excluir;
         vm.pesquisar = pesquisar
 
+        pesquisar();
+
         function cadastrar() {
             $location.path('/hotel/cadastrar');
         }
 
         function editar(id) {
-            $location.path(`/hotel/editar/:${id}`);
+            $location.path(`/hotel/editar/${id}`);
         }
 
-        function excluir() {
-            alert("Abrir modal de exclusão de hotel");
+        function excluir(id) {
+            HotelService.excluir(id)
+                .then($route.reload())
+                .catch(alert("Erro ao excluir o hotel."));
         }
 
         function pesquisar() {
-            alert("Pesquisar hotel");
+            HotelService.pesquisar(vm.filtro)
+                .then(response => vm.hoteis = response.data)
+                .catch(() => alert("Erro ao pesquisar"));
         }
     }
 

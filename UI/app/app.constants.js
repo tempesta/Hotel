@@ -4,6 +4,6 @@
     angular
         .module('app.constants', [])
         .constant('Constantes', {
-            url: 'localhost/hotelApi',
+            url: 'http://localhost:44353',
         });
 })();

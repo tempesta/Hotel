@@ -10,7 +10,8 @@ namespace Hotel.Application.Interface.Hotel
     {
         void Salvar(HotelDto hotel);
         void Alterar(HotelDto hotel);
-        void Excluir(HotelDto hotel);
-        List<HotelDto> Pesquisar(Dictionary<string, string> filtro, int itensPorPagina);
+        void Excluir(int id);
+        HotelDto Buscar(int id);
+        List<HotelDto> Pesquisar(Dictionary<string, object> filtro, int itensPorPagina);
     }
 }

@@ -6,9 +6,9 @@
         .module('app.services')
         .service('HotelService', HotelService);
 
-        HotelService.$inject = ['Constantes', '$http'];
+        HotelService.$inject = ['$http','Constantes'];
 
-    function HotelService(Constantes, $http) {
+    function HotelService($http, Constantes) {
         let hotelService = {};
 
         hotelService.cadastrar = cadastrar;
@@ -18,11 +18,7 @@
         hotelService.carregar = carregar;
 
         function cadastrar(hotelDto) {
-            return $http.post({
-                url : `${Constantes.url}/hotel/cadastrar`,
-                method: "POST",
-                data: {envelope: JSON.stringify(hotelDto)},
-            });
+            return $http.post(`${Constantes.url}/hotel/Cadastrar`, hotelDto);
         }
 
         function alterar(hotelDto) {
@@ -33,19 +29,19 @@
             });
         }
 
-        function excluir(hotelDto) {
+        function excluir(id) {
             return $http.post({
                 url: `${Constantes.url}/hotel/excluir`,
                 method: "POST",
-                data: hotelDto
+                data: id
             });
         }
 
         function pesquisar(filtro) {
-            return $http.get({
-                url: `${Constantes.url}/hotel/excluir`,
-                method: "POST",
-                data: filtro,
+            return $http({
+                url: `${Constantes.url}/hotel/Pesquisar`,
+                method: 'POST',
+                data: filtro
             });
         }
 

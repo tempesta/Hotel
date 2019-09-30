@@ -20,15 +20,3 @@ gulp.task('build', () => {
             .pipe(useref())
             .pipe(gulp.dest('dist'));
 });
-
-
- 
-gulp.task('serve', serve('public'));
-gulp.task('serve-build', serve(['public', 'build']));
-gulp.task('serve-prod', serve({
-  root: ['public', 'build'],
-  port: 80,
-  middleware: function(req, res) {
-    // custom optional middleware
-  }
-}));

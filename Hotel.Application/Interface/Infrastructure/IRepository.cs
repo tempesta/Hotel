@@ -13,5 +13,6 @@ namespace Hotel.Application.Interface.Infrastructure
         void Delete(TEntity entity);
         TEntity Load(int id);
         IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> expression = null);
+        IQueryable<TEntity> Query<TEntity>(Expression<Func<TEntity, bool>> expression = null);
     }
 }

@@ -43,12 +43,14 @@
                                 .form-group
                                     label(for="comodidades") Comodidades desejadas:
                                     div.form-check(ng-repeat="comodidade in hotel.comodidades")
-                                        input.form-check-input(type="checkbox", id="{{comodidade.nome}}", ng-model="hotel.selectedComodidades[comodidade.id]", required)
-                                        label.form-check-label(for="{{comodidade.nome}}") {{comodidade.nome}}
+                                        input.form-check-input(type="checkbox", id="{{comodidade.Nome}}", checklist-model="hotel.envelope.Comodidades", checklist-value="comodidade", required)
+                                        label.form-check-label(for="{{comodidade.Nome}}") {{comodidade.Nome}}
                         .row
-                            .col.offset-8
-                                .col
-                                    div.float-right
-                                        button.btn.btn-outline-secondary(type='reset') Limpar campos
-                                        button.btn.btn-outline-secondary(ng-if='!hotel.editar', type='submit', ng-click='hotel.cadastrar()') Cadastrar
-                                        button.btn.btn-outline-secondary(ng-if='hotel.editar', type='submit', ng-click='hotel.alterar()') Alterar
+                            .col
+                                .float-left
+                                    button.btn.btn-outline-secondary(ng-click='hotel.voltar()') Voltar
+                            .col
+                                .float-right
+                                    button.btn.btn-outline-secondary(type='reset') Limpar campos
+                                    button.btn.btn-outline-secondary(ng-if='!hotel.editar', type='submit', ng-click='hotel.cadastrar()') Cadastrar
+                                    button.btn.btn-outline-secondary(ng-if='hotel.editar', type='submit', ng-click='hotel.alterar()') Alterar

@@ -20,20 +20,53 @@ namespace Hotel.Api.Controllers
                 unitOfWork = new UnitOfWork();
         }
 
-        [HttpGet]
-        public IActionResult Salvar(int num)
+        /// <summary>
+        /// Cadastrar
+        /// </summary>
+        /// <param name="hotelDto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Cadastrar([FromBody] HotelDto hotelDto)
         {
-            var hotelDto = new HotelDto
-            {
-                Nome = "Nome",
-                Descricao = "Descricao",
-                Avaliacao = 5,
-                Endereco = "Endereço",
-                Comodidades = new List<ComodidadeDto>() { new ComodidadeDto{ Id = 1, Nome = "Comododade1"}}
-            };
             new ServiceHotel(new Repository<HotelEntity>(unitOfWork), unitOfWork).Salvar(hotelDto);
-
             return Ok("Sucesso");
+        }
+
+
+        /// <summary>
+        /// Pesquisar
+        /// </summary>
+        /// <param name="filtro"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Pesquisar([FromBody] Dictionary<string,object> filtro)
+        {
+            var hoteis = new ServiceHotel(new Repository<HotelEntity>(unitOfWork), unitOfWork).Pesquisar(filtro, 15);
+            return Ok(hoteis);
+        }
+
+        /// <summary>
+        /// Excluir
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Excluir(int id)
+        {
+            new ServiceHotel(new Repository<HotelEntity>(unitOfWork), unitOfWork).Excluir(id);
+            return Ok("Hotel excluído com sucesso");
+        }
+
+        /// <summary>
+        /// Carregar hotel
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Buscar(int id)
+        {
+            var hotel = new ServiceHotel(new Repository<HotelEntity>(unitOfWork), unitOfWork).Buscar(id);
+            return Ok(hotel);
         }
     }
 }

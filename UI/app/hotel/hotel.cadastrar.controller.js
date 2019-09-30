@@ -10,37 +10,49 @@
     function HotelCadastrarCtrl($routeParams, $location, HotelService) {
         let vm = this;
 
+        vm.titulo = "Cadastrar novo Hotel";
         vm.comodidades = [
             {
-                'id': 1,
-                'nome': 'Estacionamento'
+                'Id': 1,
+                'Nome': 'Estacionamento'
             },
             {
-                'id': 2,
-                'nome': 'Piscina'
+                'Id': 2,
+                'Nome': 'Piscina'
             },
             {
-                'id': 3,
-                'nome': 'Sauna'
+                'Id': 3,
+                'Nome': 'Sauna'
             },
             {
-                'id': 4,
-                'nome': 'Wi-fi'
+                'Id': 4,
+                'Nome': 'Wi-fi'
             },
             {
-                'id': 5,
-                'nome': 'Bar'
+                'Id': 5,
+                'Nome': 'Restaurante'
+            },
+            {
+                'Id': 6,
+                'Nome': 'Bar'
             }
         ];
 
         vm.envelope = {};
         vm.cadastrar = cadastrar;
+        vm.voltar = voltar;
 
         function cadastrar() {
-            vm.envelope.Comodidades = Object.keys(vm.selectedComodidades).toString();
             HotelService.cadastrar(vm.envelope)
-            .then(() => {alert("Cadastrado")})
+            .then(() => {
+                vm.envelope = {};
+                alert("Cadastro realizaco com sucesso!")
+            })
             .catch((resultado) => alert(resultado.toString()));
+        }
+
+        function voltar() {
+            $location.path("/hotel");
         }
     }
 

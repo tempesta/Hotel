@@ -4,5 +4,33 @@
         <name>Hotel.Api</name>
     </assembly>
     <members>
+        <member name="M:Hotel.Api.Controllers.HotelController.Cadastrar(Hotel.Application.Hotel.Model.HotelDto)">
+            <summary>
+            Cadastrar
+            </summary>
+            <param name="hotelDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hotel.Api.Controllers.HotelController.Pesquisar(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Pesquisar
+            </summary>
+            <param name="filtro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hotel.Api.Controllers.HotelController.Excluir(System.Int32)">
+            <summary>
+            Excluir
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hotel.Api.Controllers.HotelController.Buscar(System.Int32)">
+            <summary>
+            Carregar hotel
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

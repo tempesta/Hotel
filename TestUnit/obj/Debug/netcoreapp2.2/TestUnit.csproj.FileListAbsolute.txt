@@ -1,6 +1,0 @@
-E:\Treinamento\hotel\TestUnit\bin\Debug\netcoreapp2.2\TestUnit.deps.json
-E:\Treinamento\hotel\TestUnit\bin\Debug\netcoreapp2.2\TestUnit.dll
-E:\Treinamento\hotel\TestUnit\obj\Debug\netcoreapp2.2\TestUnit.csproj.CoreCompileInputs.cache
-E:\Treinamento\hotel\TestUnit\obj\Debug\netcoreapp2.2\TestUnit.AssemblyInfoInputs.cache
-E:\Treinamento\hotel\TestUnit\obj\Debug\netcoreapp2.2\TestUnit.AssemblyInfo.cs
-E:\Treinamento\hotel\TestUnit\obj\Debug\netcoreapp2.2\TestUnit.csprojAssemblyReference.cache
