@@ -54,16 +54,15 @@ namespace Hotel.Application.Hotel
             toUpdateHotel.Endereco = hotelDto.Endereco;
             toUpdateHotel.Comodidades.Clear();
 
-            var comodidadesEntity = new List<ComodidadeEntity>();
-            comodidadesEntity = hotelDto.Comodidades.Select(comodidade => new ComodidadeEntity
+            hotelDto.Comodidades.ForEach(comodidade =>
             {
-                Id = comodidade.Id,
-                Nome = comodidade.Nome
-            }).ToList();
+                toUpdateHotel.Comodidades.Add(Repository.Query<ComodidadeEntity>().FirstOrDefault(c => c.Id == comodidade.Id));
+            });
 
-            toUpdateHotel.Comodidades.Concat(comodidadesEntity);
-
-            Repository.Update(toUpdateHotel);
+            Transaction(() =>
+            {
+                Repository.Update(toUpdateHotel);
+            });
         }
 
         public void Excluir(int id)
@@ -75,7 +74,10 @@ namespace Hotel.Application.Hotel
             if(hotelEntity == null)
                 throw new ArgumentException("Operação inválida");
 
-            Repository.Delete(hotelEntity);
+            Transaction(() =>
+            {
+                Repository.Delete(hotelEntity);
+            });
         }
 
         public HotelDto Buscar(int id)

@@ -32,6 +32,13 @@ namespace Hotel.Api.Controllers
             return Ok("Sucesso");
         }
 
+        [HttpPost]
+        public IActionResult Alterar([FromBody] HotelDto hotelDto)
+        {
+            new ServiceHotel(new Repository<HotelEntity>(unitOfWork), unitOfWork).Alterar(hotelDto);
+            return Ok("Sucesso");
+        }
+
 
         /// <summary>
         /// Pesquisar
@@ -51,7 +58,7 @@ namespace Hotel.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Excluir(int id)
+        public IActionResult Excluir([FromBody] int id)
         {
             new ServiceHotel(new Repository<HotelEntity>(unitOfWork), unitOfWork).Excluir(id);
             return Ok("Hotel excluído com sucesso");
