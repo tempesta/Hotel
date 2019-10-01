@@ -5,50 +5,26 @@
         .module('app.hotel')
         .controller('HotelCadastrarCtrl', HotelCadastrarCtrl);
 
-        HotelCadastrarCtrl.$inject = ['$routeParams', '$location', 'HotelService'];
+        HotelCadastrarCtrl.$inject = ['$routeParams', '$location', 'HotelService', 'Constantes'];
 
-    function HotelCadastrarCtrl($routeParams, $location, HotelService) {
+    function HotelCadastrarCtrl($routeParams, $location, HotelService, Constantes) {
         let vm = this;
 
         vm.titulo = "Cadastrar novo Hotel";
-        vm.comodidades = [
-            {
-                'Id': 1,
-                'Nome': 'Estacionamento'
-            },
-            {
-                'Id': 2,
-                'Nome': 'Piscina'
-            },
-            {
-                'Id': 3,
-                'Nome': 'Sauna'
-            },
-            {
-                'Id': 4,
-                'Nome': 'Wi-fi'
-            },
-            {
-                'Id': 5,
-                'Nome': 'Restaurante'
-            },
-            {
-                'Id': 6,
-                'Nome': 'Bar'
-            }
-        ];
+        vm.comodidades = Constantes.comodidades;
 
         vm.envelope = {};
         vm.cadastrar = cadastrar;
         vm.voltar = voltar;
 
         function cadastrar() {
+            vm.envelope.comodidades = Array.from(vm.comodidadesIds, comodidade => comodidade= { 'id':comodidade });
             HotelService.cadastrar(vm.envelope)
             .then(() => {
                 vm.envelope = {};
+                vm.comodidadesIds = [];
                 alert("Cadastro realizaco com sucesso!")
-            })
-            .catch((resultado) => alert(resultado.toString()));
+            },() => alert("Erro ao cadastrar hotel"));
         }
 
         function voltar() {

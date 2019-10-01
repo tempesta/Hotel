@@ -33,15 +33,15 @@
                                 td {{hotel.nome}}
                                 td 
                                     div.rate
-                                        input(type="radio", id="star5", name="rating", value="5", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "5"')
+                                        input(type="radio", id="star5_{{hotel.id}}", name="rating_{{hotel.id}}", ng-value="5", ng-model='hotel.avaliacao')
                                         label(for="star5")
-                                        input(type="radio", id="star4", name="rating", value="4", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "4"')
+                                        input(type="radio", id="star4_{{hotel.id}}", name="rating_{{hotel.id}}", ng-value="4", ng-model='hotel.avaliacao')
                                         label(for="star4")
-                                        input(type="radio", id="star3", name="rating", value="3", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "3"')
+                                        input(type="radio", id="star3_{{hotel.id}}", name="rating_{{hotel.id}}", ng-value="3", ng-model='hotel.avaliacao')
                                         label(for="star3")
-                                        input(type="radio", id="star2", name="rating", value="2", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "2"')
+                                        input(type="radio", id="star2_{{hotel.id}}", name="rating_{{hotel.id}}", ng-value="2", ng-model='hotel.avaliacao')
                                         label(for="star2")
-                                        input(type="radio", id="star1", name="rating" ,value="1", ng-model='hotel.avaliacao', ng-selected='hotel.avaliacao == "1"')
+                                        input(type="radio", id="star1_{{hotel.id}}", name="rating_{{hotel.id}}", ng-value="1", ng-model='hotel.avaliacao')
                                         label(for="star1")
                                 td
                                     button.btn(type="button", ng-click='view.editar(hotel.id)')

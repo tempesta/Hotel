@@ -22,31 +22,19 @@
         }
 
         function alterar(hotelDto) {
-            return $http.post({
-                url : `${Constantes.url}/hotel/alterar`,
-                method: "POST",
-                data: angular.toJson(hotelDto),
-            });
+            return $http.post(`${Constantes.url}/hotel/alterar`, hotelDto);
         }
 
         function excluir(id) {
-            return $http.post({
-                url: `${Constantes.url}/hotel/excluir`,
-                method: "POST",
-                data: id
-            });
+            return $http.post(`${Constantes.url}/hotel/excluir`, id);
         }
 
         function pesquisar(filtro) {
-            return $http({
-                url: `${Constantes.url}/hotel/Pesquisar`,
-                method: 'POST',
-                data: filtro
-            });
+            return $http.post(`${Constantes.url}/hotel/Pesquisar`, filtro);
         }
 
         function carregar(id) {
-            return $http.get(`${Constantes.url}/hotel/carregar?id=${id}`);
+            return $http.get(`${Constantes.url}/hotel/Buscar?id=${id}`);
         }
 
         return hotelService;

@@ -13,37 +13,37 @@
                                     div 
                                         |Avaliação:
                                     div.rate
-                                        input(type="radio", id="star5", name="rating", value="5", ng-model='hotel.envelope.Avaliacao', required)
+                                        input(type="radio", id="star5", name="rating", ng-value="5", ng-model='hotel.envelope.avaliacao', required)
                                         label(for="star5")
-                                        input(type="radio", id="star4", name="rating", value="4", ng-model='hotel.envelope.Avaliacao', required)
+                                        input(type="radio", id="star4", name="rating", ng-value="4", ng-model='hotel.envelope.avaliacao', required)
                                         label(for="star4")
-                                        input(type="radio", id="star3", name="rating", value="3", ng-model='hotel.envelope.Avaliacao', required)
+                                        input(type="radio", id="star3", name="rating", ng-value="3", ng-model='hotel.envelope.avaliacao', required)
                                         label(for="star3")
-                                        input(type="radio", id="star2", name="rating", value="2", ng-model='hotel.envelope.Avaliacao', required)
+                                        input(type="radio", id="star2", name="rating", ng-value="2", ng-model='hotel.envelope.avaliacao', required)
                                         label(for="star2")
-                                        input(type="radio", id="star1", name="rating" ,value="1", ng-model='hotel.envelope.Avaliacao', required)
+                                        input(type="radio", id="star1", name="rating", ng-value="1", ng-model='hotel.envelope.avaliacao', required)
                                         label(for="star1")
                         .row
                             .col
                                 .form-group
                                     label(for="nome") Nome do hotel:
-                                    input.form-control(id="nome", type="text", ng-model='hotel.envelope.Nome', required)
+                                    input.form-control(id="nome", type="text", ng-model='hotel.envelope.nome', required)
                         .row
                             .col
                                 .form-group
                                     label(for="endereco") Endereço:
-                                    input.form-control(id="endereco", type="text", ng-model='hotel.envelope.Endereco', required)
+                                    input.form-control(id="endereco", type="text", ng-model='hotel.envelope.endereco', required)
                         .row
                             .col
                                 .form-group
                                     label(for="descricao") Descrição:
-                                    textarea.form-control(id="descricao", type="text", ng-model='hotel.envelope.Descricao', row="7", required)
+                                    textarea.form-control(id="descricao", type="text", ng-model='hotel.envelope.descricao', row="7", required)
                         .row
                             .col
                                 .form-group
                                     label(for="comodidades") Comodidades desejadas:
                                     div.form-check(ng-repeat="comodidade in hotel.comodidades")
-                                        input.form-check-input(type="checkbox", id="{{comodidade.Nome}}", checklist-model="hotel.envelope.Comodidades", checklist-value="comodidade", required)
+                                        input.form-check-input(type="checkbox", id="{{comodidade.Nome}}", checklist-model="hotel.comodidadesIds", checklist-value="comodidade.Id", required)
                                         label.form-check-label(for="{{comodidade.Nome}}") {{comodidade.Nome}}
                         .row
                             .col
