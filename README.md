@@ -1,7 +1,7 @@
 # Hotel
 
 ## Descrição do projeto:
--Arquitetura back-end:
+- Back-end:
 >Foi escolhido por utilizar arquitetura circular(clean archteture). O projeto foi dividido em core < infrastructure < presentation e testes. Para conexão com banco foi utilizado FluentNHibernate, configurado para criar uma nova base de dados de acordo com as entidades mapeadas cada vez que a aplicação for iniciada. Optei por essa configuração por facilitar a configuração da base de dados. O back-end foi desenvolvido em **.NetCore 2.2** .
 - Front-end
 > A aplicação front-end foi utilizando o framework angularJS com a ultima versão do bootstrap(4.3). O front-end consome uma api rest criada no back-end para realizar as tarefas necessárias. Foi utilizado a versão do **node 12.10.0 32 bits**.
